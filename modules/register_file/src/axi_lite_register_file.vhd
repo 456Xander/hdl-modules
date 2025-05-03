@@ -174,6 +174,7 @@ begin
 
           if axi_lite_m2s.read.ar.valid then
             read_state <= r;
+            axi_lite_s2m.read.ar.ready <= '0';
           end if;
 
         when r =>
@@ -181,6 +182,7 @@ begin
 
           if axi_lite_m2s.read.r.ready and axi_lite_s2m.read.r.valid then
             axi_lite_s2m.read.r.valid <= '0';
+            axi_lite_s2m.read.ar.ready <= '1';
 
             read_state <= ar;
           end if;
